@@ -14,7 +14,9 @@ class Post extends Component {
           content: "Today is last day of the year.",
           isLiked: true,
           isDisliked: false,
-          commentVisible: true,
+          likeCount: 90,
+          dislikeCount: 50,
+          commentVisible: false,
           commentId: 1
         },
         {
@@ -24,6 +26,8 @@ class Post extends Component {
           content: "And we are still coding.",
           isLiked: true,
           isDisliked: false,
+          likeCount: 90,
+          dislikeCount: 50,
           commentVisible: false,
           commentId: 1
         },
@@ -34,17 +38,28 @@ class Post extends Component {
           content: "That's sad!",
           isLiked: true,
           isDisliked: false,
-          commentVisible: true,
+          likeCount: 90,
+          dislikeCount: 50,
+          commentVisible: false,
           commentId: 1
         }
       ]
     };
   }
 
+  showCommentSection = (newCommentVisible, i) => {
+    newCommentVisible
+      ? (newCommentVisible = false)
+      : (newCommentVisible = true);
+    let newPosts = this.state.posts;
+    newPosts[i].commentVisible = newCommentVisible;
+    this.setState({ posts: newPosts });
+  };
+
   render() {
     return (
       <div className="post">
-        {this.state.posts.map(post => {
+        {this.state.posts.map((post, index) => {
           return (
             <div key={post.id} className="content">
               Username :<p>{post.username}</p>
@@ -53,7 +68,14 @@ class Post extends Component {
               <div className="menu">
                 <button className="upVote postBtn">Up Vote</button>
                 <button className="downVote postBtn">Down Vote</button>
-                <button className="comments postBtn">Comments</button>
+                <button
+                  className="comments postBtn"
+                  onClick={() =>
+                    this.showCommentSection(post.commentVisible, index)
+                  }
+                >
+                  Comments
+                </button>
               </div>
               <div className="comments">
                 {post.commentVisible && <Comments commentId={post.commentId} />}
