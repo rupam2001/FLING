@@ -1,0 +1,21 @@
+.content {
+  margin: 1rem;
+  font-size: 1.2rem;
+}
+.btn {
+  background: #6493ef;
+  box-shadow: 0rem 0.6rem 0.8rem grey;
+  border-radius: 0.5rem;
+  color: white;
+  padding: 0.7rem;
+  border: none;
+  text-shadow: 0rem 0.3rem 0.4rem black;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+.btn:hover {
+  font-weight: 100;
+  text-shadow: none;
+  box-shadow: inset 0rem 0.2rem 0.6rem grey;
+}

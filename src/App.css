@@ -51,6 +51,7 @@
 }
 .comments {
   grid-area: comments;
+  padding-top: 0.5rem;
 }
 
 .postBtn {

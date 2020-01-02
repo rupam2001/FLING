@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import Comments from "./Comments";
+import PageChanger from "./PageChanger";
+import axios from "axios";
 
 class Post extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      userId: 1,
+      pageNumber: 2,
+      lastPageNumber: 5,
       posts: [
         {
           id: 1,
@@ -14,7 +19,7 @@ class Post extends Component {
           content: "Today is last day of the year.",
           isLiked: true,
           isDisliked: false,
-          likeCount: 90,
+          likeCount: 91,
           dislikeCount: 50,
           commentVisible: false,
           commentId: 1
@@ -56,24 +61,126 @@ class Post extends Component {
     this.setState({ posts: newPosts });
   };
 
+  /*componentDidMount() {
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then(response => {
+        this.setState({ posts: response.data });
+      })
+      .catch(error => {});
+  }*/
+
+  upVoteHandler = (
+    newIsLiked,
+    newIsDisliked,
+    newLikeCount,
+    newDislikeCount,
+    i
+  ) => {
+    let newPosts = this.state.posts;
+    if (!newIsLiked && !newIsDisliked) {
+      newIsLiked = true;
+      newLikeCount = newLikeCount + 1;
+    } else if (!newIsLiked && newIsDisliked) {
+      newIsDisliked = false;
+      newIsLiked = true;
+      newLikeCount = newLikeCount + 1;
+      newDislikeCount = newDislikeCount - 1;
+    } else if (newIsLiked) {
+      newIsLiked = false;
+      newLikeCount = newLikeCount - 1;
+    }
+    newPosts[i].isLiked = newIsLiked;
+    newPosts[i].likeCount = newLikeCount;
+    newPosts[i].isDisliked = newIsDisliked;
+    newPosts[i].dislikeCount = newDislikeCount;
+    this.setState({ posts: newPosts }, () => {
+      axios
+        .post("link", this.state)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    });
+  };
+
+  downVoteHandler = (
+    newIsLiked,
+    newIsDisliked,
+    newLikeCount,
+    newDislikeCount,
+    i
+  ) => {
+    let newPosts = this.state.posts;
+    if (!newIsDisliked && !newIsLiked) {
+      newIsDisliked = true;
+      newDislikeCount = newDislikeCount + 1;
+    } else if (!newIsDisliked && newIsLiked) {
+      newIsDisliked = true;
+      newIsLiked = false;
+      newDislikeCount = newDislikeCount + 1;
+      newLikeCount = newLikeCount - 1;
+    } else if (newIsDisliked) {
+      newIsDisliked = false;
+      newDislikeCount = newDislikeCount - 1;
+    }
+    newPosts[i].isLiked = newIsLiked;
+    newPosts[i].likeCount = newLikeCount;
+    newPosts[i].isDisliked = newIsDisliked;
+    newPosts[i].dislikeCount = newDislikeCount;
+    this.setState({ posts: newPosts }, () => {
+      axios
+        .post("link", this.state)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    });
+  };
+
   render() {
+    const { posts } = this.state;
     return (
       <div className="post">
         {this.state.posts.map((post, index) => {
           return (
             <div key={post.id} className="content">
-              <div className="username">
-                <p>{post.username} </p> &nbsp;says :
-              </div>
+              <div className="username">An anonymous user&nbsp;says :</div>
               <div className="post-content">
                 <p>{post.content}</p>
               </div>
               <p className="uploadTime">Uploaded on {post.uploadTime}</p>
               <div className="menu">
-                <button className="upVote postBtn">
+                <button
+                  className="upVote postBtn"
+                  onClick={() =>
+                    this.upVoteHandler(
+                      post.isLiked,
+                      post.isDisliked,
+                      post.likeCount,
+                      post.dislikeCount,
+                      index
+                    )
+                  }
+                >
                   {post.likeCount} | Up Vote
                 </button>
-                <button className="downVote postBtn">
+                <button
+                  className="downVote postBtn"
+                  onClick={() =>
+                    this.downVoteHandler(
+                      post.isLiked,
+                      post.isDisliked,
+                      post.likeCount,
+                      post.dislikeCount,
+                      index
+                    )
+                  }
+                >
                   {post.dislikeCount} | Down Vote
                 </button>
                 <button
@@ -86,11 +193,22 @@ class Post extends Component {
                 </button>
               </div>
               <div className="comments">
-                {post.commentVisible && <Comments commentId={post.commentId} />}
+                {post.commentVisible && (
+                  <Comments
+                    commentId={post.commentId}
+                    userId={this.state.userId}
+                  />
+                )}
               </div>
             </div>
           );
         })}
+        <div className="pages">
+          <PageChanger
+            pageNumber={this.state.pageNumber}
+            lastPageNumber={this.state.lastPageNumber}
+          />
+        </div>
       </div>
     );
   }

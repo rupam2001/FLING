@@ -1,0 +1,13 @@
+.pageBtn {
+  padding: 0.6rem;
+  margin: 0rem 1.3rem 1rem 1.3rem;
+  background: #6493ef;
+  color: white;
+  border: solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0.7rem 0.5rem rgba(0, 0, 0, 0.4);
+}
+.pageBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border: solid #6493ef;
+  color: black;
+}

@@ -3,6 +3,11 @@
   border-radius: 0.5rem;
   padding: 0.5rem;
   background: #6493ef;
+  box-shadow: inset 0rem 1rem 1rem rgba(0, 0, 0, 0.3);
+}
+ol {
+  margin: 0;
+  padding: 1rem;
 }
 .everyComment {
   color: white;
@@ -24,11 +29,25 @@
 }
 .txtArea {
   padding: 0.5rem;
+  width: 100%;
   background-color: #6493ef;
   border-radius: 0.3rem;
   color: white;
   resize: none;
+  box-shadow: inset 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 .commentBtn {
   color: blue;
+}
+.readMoreBtn {
+  background: #c5f3fc;
+  color: black;
+  border: none;
+  justify-items: center;
+  justify-content: center;
+  box-shadow: 0 0.4rem 0.5rem rgba(0, 0, 0, 0.3);
+}
+.readMoreBtn:hover {
+  background: #2e98aa;
+  color: white;
 }
