@@ -4,7 +4,7 @@
 }
 
 .header {
-  background-color: #021e38;
+  background-color: #6493ef;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -14,6 +14,7 @@
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
+  text-shadow: 0rem 0.3rem 0.4rem black;
 }
 
 .post {
@@ -53,8 +54,9 @@
 }
 
 .postBtn {
-  background-color: #c5f3fc;
-  color: #0d2840;
+  background-color: #6493ef;
+  padding: 0.2rem;
+  color: white;
   border: solid;
   border-width: 0.1vw;
   border-color: rgba(13, 40, 64, 0.5);
@@ -68,8 +70,20 @@
 p {
   font-size: 1.2rem;
   color: black;
+  padding: 0;
+  margin-top: 0;
 }
 
 p.uploadTime {
   font-size: 0.7rem;
+}
+.username {
+  display: flex;
+  justify-items: center;
+  align-items: flex-start;
+}
+.post-content {
+  display: flex;
+  justify-items: center;
+  align-items: flex-start;
 }

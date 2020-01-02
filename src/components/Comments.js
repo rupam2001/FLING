@@ -20,13 +20,13 @@ class Comments extends Component {
 
   render() {
     const commentList = this.state.comments.map((comment, index) => (
-      <div className={CommentStyle.everyComment} key={index}>
+      <li className={CommentStyle.everyComment} key={index}>
         {comment}
-      </div>
+      </li>
     ));
     return (
       <React.Fragment>
-        <form>
+        <form className={CommentStyle.formStyle}>
           <textarea
             className={CommentStyle.txtArea}
             value={this.state.userComment}
@@ -39,7 +39,9 @@ class Comments extends Component {
             Post
           </button>
         </form>
-        <div className={CommentStyle.content}>{commentList}</div>
+        <div className={CommentStyle.content}>
+          <ol>{commentList}</ol>
+        </div>
       </React.Fragment>
     );
   }

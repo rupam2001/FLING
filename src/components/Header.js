@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { findByLabelText } from "@testing-library/react";
 
 function Header(props) {
   return (

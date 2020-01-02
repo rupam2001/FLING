@@ -62,12 +62,20 @@ class Post extends Component {
         {this.state.posts.map((post, index) => {
           return (
             <div key={post.id} className="content">
-              Username :<p>{post.username}</p>
-              Content :<p>{post.content}</p>
+              <div className="username">
+                <p>{post.username} </p> &nbsp;says :
+              </div>
+              <div className="post-content">
+                <p>{post.content}</p>
+              </div>
               <p className="uploadTime">Uploaded on {post.uploadTime}</p>
               <div className="menu">
-                <button className="upVote postBtn">Up Vote</button>
-                <button className="downVote postBtn">Down Vote</button>
+                <button className="upVote postBtn">
+                  {post.likeCount} | Up Vote
+                </button>
+                <button className="downVote postBtn">
+                  {post.dislikeCount} | Down Vote
+                </button>
                 <button
                   className="comments postBtn"
                   onClick={() =>
