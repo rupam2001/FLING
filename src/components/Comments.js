@@ -7,6 +7,7 @@ class Comments extends Component {
     super(props);
 
     this.state = {
+      postId: this.props.postId,
       comments: [],
       userComment: "",
       commentId: 0,

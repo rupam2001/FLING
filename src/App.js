@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Post from "./components/Post";
 import axios from "axios";
+import Test from "./components/Test";
 
 function App() {
   const [userId, updateUserId] = useState(0);

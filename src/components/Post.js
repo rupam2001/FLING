@@ -15,6 +15,7 @@ class Post extends Component {
       posts: [
         {
           id: 1,
+          postId: 123,
           username: "black",
           uploadTime: "00:01",
           content: "Today is last day of the year.",
@@ -27,6 +28,7 @@ class Post extends Component {
         },
         {
           id: 2,
+          postId: 124,
           username: "end",
           uploadTime: "00:02",
           content: "And we are still coding.",
@@ -39,6 +41,7 @@ class Post extends Component {
         },
         {
           id: 3,
+          postId: 125,
           username: "black",
           uploadTime: "00:03",
           content: "That's sad!",
@@ -147,7 +150,7 @@ class Post extends Component {
     const { posts } = this.state;
     return (
       <div className="post">
-        <AddPost />
+        <AddPost userId={this.userId} />
         {this.state.posts.map((post, index) => {
           return (
             <div key={post.id} className="content">
@@ -199,6 +202,7 @@ class Post extends Component {
                   <Comments
                     commentId={post.commentId}
                     userId={this.state.userId}
+                    postId={post.postId}
                   />
                 )}
               </div>

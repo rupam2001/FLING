@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import AddPostCss from "./AddPostCss.module.css";
+import axios from "axios";
 
 function AddPost(props) {
+  const [propUserId, updateId] = useState(props.userId);
   const [isClicked, updateClick] = useState(false);
   const [postContent, updatePostContent] = useState("");
+  const [post, updatePost] = useState({ userId: "", content: "" });
 
   const changeClick = () => {
     isClicked ? updateClick(false) : updateClick(true);
@@ -14,11 +17,21 @@ function AddPost(props) {
   };
 
   const handlePost = event => {
-    event.preventDefault();
-    prepareStare();
+    updatePost({ ...post, userId: propUserId, content: postContent });
+    console.log(event);
   };
 
-  const prepareStare = () => {};
+  useEffect(() => {
+    /*axios
+      .post("link", post)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });*/
+    console.log(post);
+  }, []);
 
   const addPost = () => {
     return (
