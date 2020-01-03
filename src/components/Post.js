@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import Comments from "./Comments";
 import PageChanger from "./PageChanger";
 import axios from "axios";
+import AddPost from "./AddPost";
 
 class Post extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userId: 1,
+      userId: this.props.userId,
       pageNumber: 2,
       lastPageNumber: 5,
       posts: [
@@ -146,6 +147,7 @@ class Post extends Component {
     const { posts } = this.state;
     return (
       <div className="post">
+        <AddPost />
         {this.state.posts.map((post, index) => {
           return (
             <div key={post.id} className="content">
